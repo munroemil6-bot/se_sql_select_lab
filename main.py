@@ -34,10 +34,10 @@ df_short_title = pd.read_sql("""SELECT SUBSTR(jobTitle, 1, 2) AS short_title FRO
 
 # STEP 8
 # Replace None with your code
-sum_total_price = pd.read_sql("""SELECT SUM(ROUND(priceEach * quantityOrdered)) FROM orderDetails""", conn)
+sum_total_price = pd.read_sql("""SELECT SUM(ROUND(priceEach * quantityOrdered)) AS total_price FROM orderDetails""", conn).iloc[:, 0]
 
 # STEP 9
 # Replace None with your code
-df_day_month_year = pd.read_sql("""SELECT orderDate, STRFTIME('%d', orderDate) AS day, STRFTIME('%m', orderDate) AS month, STRFTIME('%Y', orderDate) AS year FROM orderDetails""", conn)
+df_day_month_year = pd.read_sql("""SELECT orderDate, STRFTIME('%d', orderDate) AS day, STRFTIME('%m', orderDate) AS month, STRFTIME('%Y', orderDate) AS year FROM orders""", conn)
 
 conn.close()
